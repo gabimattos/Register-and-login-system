@@ -7,6 +7,7 @@ const router = express.Router();
 const prisma = new PrismaClient();
 
 const JWT_SECRET =  process.env.JWT_SECRET;
+
 // Cadastro
 router.post('/cadastro', async (req, res) => {
 
@@ -56,9 +57,10 @@ router.post('/login', async (req, res) => {
             return  res.status(400).send('Senha inválida.');
         }
 
-        // Gerar token JWT 
+        // Gerar token JWT
+        const token =jwt.sign({id: findUser.id}, JWT_SECRET, {expiresIn: '1h'});
 
-        res.status(200).send(findUser);
+        res.status(200).send(token);
 
     } catch (error) {
         console.error(error);
