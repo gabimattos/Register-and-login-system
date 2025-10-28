@@ -1,5 +1,6 @@
 import { Link } from 'react-router-dom';
 import { useRef } from 'react';
+import api from '../../services/api';
 
 
 function Cadastro(){
@@ -8,10 +9,24 @@ function Cadastro(){
     const emailRef = useRef();
     const passwordRef = useRef();
 
-    function handleSubmit(event){
-        event.preventDefault();
-        console.log(nameRef);
+    async function handleSubmit(event){
+
+        try{
+            event.preventDefault();
+
+            await api.post('/cadastro', {
+                name: nameRef.current.value,
+                email: emailRef.current.value,
+                password: passwordRef.current.value
+            });
+            alert('Cadastro realizado com sucesso!');
+
+        } catch(error){
+            alert('Erro ao cadastrar:', error);
+        }
+        
     }
+
 
     return(
         <div className="mx-auto mt-10 bg-white p-8 border border-gray-300 rounded-lg shadow-md w-full max-w-md">

@@ -1,7 +1,7 @@
 import { BrowserRouter, Route, Routes, Navigate } from "react-router-dom";
 import Cadastro from "./pages/Cadastro";
 import Login from "./pages/Login";
-import Lista from "./pages/Lista";
+import ListaUsuarios from "./pages/Lista";
 
 function App() {
 
@@ -11,7 +11,7 @@ function App() {
         <Routes>
           <Route path="/" element={<Cadastro />} />
           <Route path="/login" element={<Login />} />
-          <Route path="/lista" element={<Lista />} />
+          <Route path="/lista-usuarios" element={<ListaUsuarios />} />
           <Route path="*" element={<Navigate to="/" />} />
         </Routes>
       </BrowserRouter>
